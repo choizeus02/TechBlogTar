@@ -1,0 +1,46 @@
+spring:
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB
+  jackson:
+    mapper:
+      accept-case-insensitive-enums: true
+
+  kafka: #kafka??
+    bootstrap-servers: kafka:9092   #kafka ????
+    consumer:
+      group-id: consumerGroup1
+      enable-auto-commit: true
+      auto-offset-reset: latest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      max-poll-records: 1000
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: kafkaTest
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+        highlight_sql: true
+    database: postgresql
+
+
+server:
+  port: 9001
+
+
+#flask:
+#  api:
+#    url: ${FLASK_API_URL:http://localhost:5000}
+#
+#kafka:
+#  broker: ${KAFKA_BROKER:localhost:9092}
+#
